@@ -1,0 +1,14 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/google-multi-client', './client' ]
+    - name: 'gcr.io/cloud-builders/docker'
+      args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/google-multi-nginx', './nginx' ]
+      - name: 'gcr.io/cloud-builders/docker'
+        args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/google-multi-server', './server' ]
+        - name: 'gcr.io/cloud-builders/docker'
+          args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/google-multi-worker', './worker' ]
+  images:
+  - 'gcr.io/$PROJECT_ID/google-multi-client'
+  - 'gcr.io/$PROJECT_ID/google-multi-nginx'
+  - 'gcr.io/$PROJECT_ID/google-multi-server'
+  - 'gcr.io/$PROJECT_ID/google-multi-worker'
